@@ -9,16 +9,23 @@ Build a CI/CD Jenkins Pipeline to Deploy a demo node application on GKE cluster
 
 
 ## Steps
-### create  Dockerfile for your application
+1- Dockerfile for your application:
+
+```
+FROM node:12
+COPY app/nodeapp /nodeapp
+WORKDIR /nodeapp
+RUN npm install
+CMD ["node", "/nodeapp/app.js"]
+
+```
+
+2- In the GCP architecture we use in [Deploy Jenkins On GKE](https://github.com/ezzatabonazel/Deploy-jenkins-on-GKE-cluster.git)
 
 
+3- create Jenkinsfile:
 
-### In the GCP architecture we use in [Deploy Jenkins On GKE](https://github.com/ezzatabonazel/Deploy-jenkins-on-GKE-cluster.git)
-
-
-### create Jenkinsfile
-
-'''
+```
 pipeline {
     agent any
     stages {
@@ -53,26 +60,31 @@ pipeline {
     }
 }  
   
-'''
+```
 
 
-### login to Jenkins and craete username and password credential for your Dockerhub
+4- login to Jenkins and craete username and password credential for your Dockerhub:
 
-<img src="screenshots/dockerhub.png"/>
+<img src="screenshots/credential.png"/>
 
-### create a new pipeline and set the git repo
+5- create a new pipeline and set the git repo:
 
 <img src="screenshots/jenkins-pipeline.png"/>
 
-### build the pipeline
+6- build the pipeline:
 
 <img src="screenshots/build.png"/>
 
 
-#### Final Results
+### Final Results
 * From Jenkins 
 
-<img src="screenshots/build.png"/>
+<img src="screenshots/pipelineoutput.png"/>
+
+* From Dockerhub
+
+<img src="screenshots/dockerhub.png"/>
+
 
 * From GKE cluster:
     - namespace created
