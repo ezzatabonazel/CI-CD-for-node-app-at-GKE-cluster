@@ -3,7 +3,7 @@ pipeline {
     stages {
             stage('ci') {
             steps {
-                sh "docker build . -t ezzatabonazel7/demo-node"
+                sh "docker build /app -t ezzatabonazel7/demo-node"
                 }
             }  
             stage('login') {
