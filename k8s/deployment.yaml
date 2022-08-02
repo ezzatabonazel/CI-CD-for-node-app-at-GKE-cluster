@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node 
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+        - name: node-app
+          image: ezzatabonazel7/demo-node
+          imagePullPolicy: Always
+          ports:
+            - name: http-port
+              containerPort: 80
