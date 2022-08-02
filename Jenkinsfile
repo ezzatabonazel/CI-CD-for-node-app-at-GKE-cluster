@@ -22,7 +22,7 @@ pipeline {
             stage('cd') {
             steps {
                 sh '''
-                kubectl create -f namespace.yaml
+                kubectl create -f k8s/namespace.yaml
                 kubectl create  -f k8s/deployment.yaml
                 kubectl create -f k8s/svc.yaml
                 '''
